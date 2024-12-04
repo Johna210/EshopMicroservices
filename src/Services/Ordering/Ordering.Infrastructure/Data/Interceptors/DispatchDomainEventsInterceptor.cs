@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 
 namespace Ordering.Infrastructure.Data.Interceptors;
 
