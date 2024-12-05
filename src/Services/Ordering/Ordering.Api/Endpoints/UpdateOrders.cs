@@ -12,6 +12,11 @@ public class UpdateOrders : ICarterModule
     {
         app.MapPut("/orders", async (UpdateOrderRequest request, ISender sender) =>
         {
+            // Configure the mapping
+            TypeAdapterConfig<UpdateOrderRequest, UpdateOrderCommand>
+               .NewConfig()
+               .Map(dest => dest.Order.Payment.CVV, src => src.Order.Payment.CVV);
+
             var command = request.Adapt<UpdateOrderCommand>();
 
             var result = await sender.Send(command);
